@@ -12,6 +12,7 @@ videos = ["benScott_excuses.mp4",
           "kobe_failure.mp4",
           "kungFuPanda_identity.mp4",
           "science_curiosity.mp4",
+          "tarantino_workEthic.mp4"
           "various_change.mp4",
           "whiplash_obsession.mp4"]
 
