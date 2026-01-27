@@ -1,11 +1,7 @@
-from moviepy import VideoFileClip
+import subprocess
 import random
-import signal
 import sys
 import os
-
-
-
 
 folder_path = r"C:\Evan\engProjects\shortMotivations\videos"
 with os.scandir(folder_path) as videos:
@@ -15,19 +11,6 @@ with os.scandir(folder_path) as videos:
         
 path = os.path.join(folder_path, video)
 
-def safe_preview():
-    clip = VideoFileClip(path)
-    
-    try:
-        clip.preview(fps=clip.fps, audio=True)
-    except (OSError, IOError, BrokenPipeError):
-        pass
-    finally:
-        clip.close()
-        sys.exit(0)
-
-signal.signal(signal.SIGINT, lambda s, f: sys.exit(0))
-
-if __name__ == "__main__":
-    safe_preview()
-    
+subprocess.run(['ffplay', '-autoexit', '-fs', '-loglevel', 'quiet', path],
+               shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+sys.exit(0)
